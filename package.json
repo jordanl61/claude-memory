@@ -1,0 +1,14 @@
+{
+  "name": "memory-server",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "bun run dist/server.js",
+    "build": "bun build server.ts --outdir dist --target bun --minify"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.12.1",
+    "@supabase/supabase-js": "^2.49.9",
+    "zod": "^3.25.67"
+  }
+}
