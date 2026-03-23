@@ -39,18 +39,6 @@ While it was built specifically for Claude Code Channels on Telegram, the same o
 - “Forget that TypeScript preference” → deactivates the saved fact
 - Start a new session → Claude can load relevant context automatically
 
-## What You Get
-
-| Tool | What it does |
-|------|-------------|
-| `remember` | Save a fact ("remember that I prefer TypeScript") |
-| `recall` | Search past conversations, facts, and summaries |
-| `forget` | Remove a previously saved fact |
-| `start_session` | Load context from recent sessions at conversation start |
-| `end_session` | Save a summary when a conversation ends |
-| `load_context` | Pull recent summaries and saved facts |
-| `log_message` | Store individual messages to the database |
-
 ## Prerequisites
 
 - [Bun](https://bun.sh) runtime (install: `curl -fsSL https://bun.sh/install | bash`)
