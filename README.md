@@ -263,6 +263,8 @@ Restart Claude Code/Desktop after adding the MCP config. Check that the path to 
 **"logMessage error" / database errors**
 Make sure you ran `schema.sql` in the Supabase SQL Editor. Check that you're using the `service_role` key (not the `anon` key).
 
+Created by Lawrence Jordan
+
 ## License
 
 MIT
