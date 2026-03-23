@@ -1,8 +1,43 @@
-# Claude -> Telegram Memory
+# Claude Memory
 
-Give Claude persistent memory across conversations using Supabase as a backend. Works with **Claude Code** (CLI) and **Claude Desktop**.
+**Persistent memory for Claude Code Channels via Telegram, powered by Supabase and MCP.**
 
-Claude can remember facts, recall past conversations, and automatically log session summaries — so it picks up where you left off every time.
+Claude Memory is a lightweight MCP server built to give Claude Code Channels on Telegram a practical long-term memory layer. It stores facts, conversation logs, and session summaries in Supabase so Claude can recall useful context across sessions instead of starting from scratch every time.
+
+It was created for the real-world workflow of staying connected to Claude through Telegram, where convenience is high but continuity can easily get lost.
+
+## Why this exists
+
+Claude Code Channels on Telegram make it incredibly convenient to stay connected to Claude from anywhere, but useful context can disappear between sessions unless you provide a memory layer.
+
+This project solves that problem by adding persistent memory through Supabase. It allows Claude to remember important facts, recall previous conversations, and carry forward relevant context over time.
+
+The goal is not to build a giant, overengineered framework. The goal is to create a simple, practical memory system that is easy to run, easy to understand, and genuinely useful in everyday Claude Code workflows via Telegram.
+
+While it was built specifically for Claude Code Channels on Telegram, the same overall pattern may also be useful for other trusted MCP-based Claude workflows.
+
+## What it stores
+
+- **Facts** for long-lived memory
+- **Messages** for conversation history
+- **Summaries** for session-level context compression
+
+## Core tools
+
+- `remember` — save an important fact
+- `recall` — search previous facts, messages, and summaries
+- `forget` — deactivate a fact
+- `start_session` — begin a new conversation session
+- `end_session` — close a session
+- `load_context` — load useful recent context
+- `log_message` — store conversation messages
+
+## Quick example
+
+- “Remember that I prefer TypeScript” → saves a fact
+- “What did we discuss yesterday?” → recalls prior context
+- “Forget that TypeScript preference” → deactivates the saved fact
+- Start a new session → Claude can load relevant context automatically
 
 ## What You Get
 
@@ -162,6 +197,60 @@ You <-> Claude <-> MCP Server <-> Supabase
 | `scripts/session-summary.ts` | Session end summary hook |
 | `scripts/save-fact.ts` | Utility to save facts directly |
 | `scripts/memory-health-check.sh` | Health check script |
+
+## Security Notes
+
+This project is intended to run in a trusted local or server-side MCP environment for Claude Code Channels via Telegram.
+
+- Use the `service_role` key only in environments you control
+- Never expose the `service_role` key in browser-based apps or client-side code
+- Never commit your `.env` file or API keys to GitHub
+- Rotate your key immediately if you believe it has been exposed
+- Consider creating a dedicated Supabase project just for this memory server
+
+Row Level Security (RLS) is enabled in the Supabase setup, but the `service_role` key still has elevated privileges and should always be treated as highly sensitive.
+
+## Trust Model
+
+Claude Memory is designed for a trusted MCP runtime using Supabase server credentials.
+
+This project uses Supabase as the persistent memory layer and is intended to run locally or in a server environment you control. Row Level Security (RLS) is enabled, but the MCP server uses the Supabase `service_role` key for trusted server-side access.
+
+That means:
+
+- database access happens through the MCP server, not directly from a client app
+- the `service_role` key must remain private
+- this project is optimized for trusted Claude workflows rather than public-facing        client deployments
+
+If you want to adapt this project for a broader multi-user or less-trusted environment, you may want to extend it further with:
+
+- per-user ownership and tenancy design
+- stricter authenticated access patterns
+- tighter secret handling and deployment controls
+- additional audit and usage safeguards
+
+## Disclaimer
+
+This project is provided in good faith as a practical tool for trusted Claude Code Channels via Telegram workflows.
+
+It is provided **as is**, without warranty of any kind. You are responsible for reviewing the code, securing your environment, protecting your secrets, and deciding whether it is appropriate for your use case.
+
+Please do not expose privileged Supabase credentials in untrusted or client-side environments. See the `LICENSE` file for the full license terms.
+
+## Roadmap
+
+- [x] Persistent fact storage
+- [x] Conversation logging
+- [x] Session summaries
+- [x] Claude Code Channels via Telegram workflow
+- [x] Supabase-backed persistent storage
+- [x] RLS-enabled database setup
+- [ ] Better search and recall quality
+- [ ] Optional semantic search / embeddings
+- [ ] Multi-user namespacing
+- [ ] Hardened deployment guidance for broader use cases
+- [ ] Backup / export utilities
+- [ ] Additional examples, screenshots, and setup docs
 
 ## Troubleshooting
 
