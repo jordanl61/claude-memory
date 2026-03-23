@@ -1,4 +1,4 @@
-# Claude Memory
+# Claude -> Telegram Memory
 
 Give Claude persistent memory across conversations using Supabase as a backend. Works with **Claude Code** (CLI) and **Claude Desktop**.
 
