@@ -1,7 +1,30 @@
 {
-  "name": "memory-server",
-  "version": "1.0.0",
+  "name": "claude-memory",
+  "version": "0.1.0",
+  "description": "Persistent memory for Claude Code Channels via Telegram, powered by Supabase and MCP.",
   "type": "module",
+  "author": "Lawrence Jordan",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jordanl61/claude-memory.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jordanl61/claude-memory/issues"
+  },
+  "homepage": "https://github.com/jordanl61/claude-memory#readme",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "claude",
+    "claude-code",
+    "telegram",
+    "supabase",
+    "memory",
+    "typescript",
+    "bun",
+    "anthropic"
+  ],
   "scripts": {
     "start": "bun run dist/server.js",
     "build": "bun build server.ts --outdir dist --target bun --minify"
